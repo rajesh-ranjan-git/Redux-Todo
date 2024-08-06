@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "./Slices/todoSlice";
+import { addTodo, deleteTodo } from "./Slices/todoSlice";
 import { v4 as uuid } from "uuid";
 
 function App() {
@@ -18,6 +18,10 @@ function App() {
       })
     );
     setInputText("");
+  };
+
+  const onDeleteTodo = (id) => {
+    dispatch(deleteTodo(id));
   };
 
   return (
@@ -40,16 +44,20 @@ function App() {
           Add
         </button>
       </div>
-      <div className="bg-slate-50 m-3 px-3 py-2 rounded-lg">
+      <div
+        className={
+          todos?.length > 0 ? "bg-slate-50 m-3 px-3 py-2 rounded-lg" : ""
+        }
+      >
         {todos?.length > 0 &&
           todos.map((todo) => (
             <div className="flex justify-center items-center" key={todo.id}>
-              <div className="bg-slate-200 m-3 px-3 py-2 rounded-lg w-64 text-2xl">
+              <div className="bg-slate-200 m-3 px-3 py-2 rounded-lg w-64 text-2xl text-purple-950">
                 {todo.todo}
               </div>
               <button
                 className="bg-red-500 m-3 px-3 py-2 rounded-lg shadow-[0_3px_8px_0_rgba(0,0,0,0.24)] text-white font-bold w-28"
-                onClick={onAddTodo}
+                onClick={() => onDeleteTodo(todo.id)}
               >
                 Delete
               </button>
