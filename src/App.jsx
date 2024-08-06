@@ -52,7 +52,7 @@ function App() {
         {todos?.length > 0 &&
           todos.map((todo) => (
             <div className="flex justify-center items-center" key={todo.id}>
-              <div className="bg-slate-200 m-3 px-3 py-2 rounded-lg w-64 text-2xl text-purple-950">
+              <div className="bg-slate-200 m-3 px-3 py-2 rounded-lg min-w-64 text-2xl text-purple-950">
                 {todo.todo}
               </div>
               <button
